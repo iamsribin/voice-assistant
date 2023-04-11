@@ -25,6 +25,7 @@ while True:
 
     try:
         user_input = r.recognize_google(audio)
+        user_input = user_input.lower().replace("alexa", "")
         print(f"User said: {user_input}")
         if "stop" in user_input.lower():
             print("Goodbye...")
@@ -45,12 +46,12 @@ while True:
         video_name = user_input.lower().replace("play", "")
         pywhatkit.playonyt(video_name)
         response_str = f"Playing {video_name} on YouTube"
-        print("Goodbye! enjoy this video...")
-        engine.say("palying" + video_name + "enjoy")
+        print("Goodbye! enjoy " + video_name + " video...")
+        engine.say("enjoy " + video_name + " video Goodbye...")
         engine.runAndWait()
         exit()
 
-    elif "what time is it" in user_input.lower():
+    elif "what time it is" in user_input.lower():
         now = datetime.datetime.now()
         time_str = now.strftime("%H:%M:%S")
         response_str = f"The time is {time_str}"
@@ -85,5 +86,5 @@ while True:
         print(f"{bot_name}: {response_str}")
 
         engine.say(response_str)
-        
+
         engine.runAndWait()
